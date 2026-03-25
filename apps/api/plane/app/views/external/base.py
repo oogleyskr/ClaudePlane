@@ -8,6 +8,10 @@ from typing import List, Dict, Tuple
 
 # Third party import
 from openai import OpenAI
+try:
+    import anthropic as anthropic_sdk
+except ImportError:
+    anthropic_sdk = None
 import requests
 
 from rest_framework import status
@@ -48,16 +52,15 @@ class OpenAIProvider(LLMProvider):
 class AnthropicProvider(LLMProvider):
     name = "Anthropic"
     models = [
+        "claude-opus-4-6",
+        "claude-sonnet-4-6",
+        "claude-haiku-4-5",
         "claude-3-5-sonnet-20240620",
         "claude-3-haiku-20240307",
         "claude-3-opus-20240229",
         "claude-3-sonnet-20240229",
-        "claude-2.1",
-        "claude-2",
-        "claude-instant-1.2",
-        "claude-instant-1",
     ]
-    default_model = "claude-3-sonnet-20240229"
+    default_model = "claude-sonnet-4-6"
 
 
 class GeminiProvider(LLMProvider):
@@ -66,10 +69,27 @@ class GeminiProvider(LLMProvider):
     default_model = "gemini-pro"
 
 
+class ClaudeMaxProvider(LLMProvider):
+    """Provider for Claude Max subscription using OAuth tokens.
+    
+    Uses the native Anthropic Messages API with OAuth tokens
+    from Claude Max subscriptions. Tokens are read from the
+    Claude CLI credentials file and auto-refreshed.
+    """
+    name = "Claude Max"
+    models = [
+        "claude-opus-4-6",
+        "claude-sonnet-4-6",
+        "claude-haiku-4-5",
+    ]
+    default_model = "claude-sonnet-4-6"
+
+
 SUPPORTED_PROVIDERS = {
-    "openai": OpenAIProvider,
+    "openai": OpenAIProvider,  # Kept for custom OpenAI-compatible endpoints (vLLM, SGLang, Ollama)
     "anthropic": AnthropicProvider,
     "gemini": GeminiProvider,
+    "claude-max": ClaudeMaxProvider,
 }
 
 
@@ -124,10 +144,41 @@ def get_llm_config() -> Tuple[str | None, str | None, str | None]:
     return api_key, model, provider_key, base_url
 
 
+def _read_claude_max_token(token_path: str = None) -> str | None:
+    """Read the current OAuth token from Claude CLI credentials."""
+    import json as _json
+    path = token_path or os.path.expanduser("~/.claude/.credentials.json")
+    try:
+        with open(path) as f:
+            creds = _json.load(f)
+        token = creds.get("claudeAiOauth", {}).get("accessToken", "")
+        if not token:
+            token = creds.get("accessToken", "")
+        return token or None
+    except Exception:
+        return None
+
+
 def get_llm_response(task, prompt, api_key: str, model: str, provider: str, base_url: str = None) -> Tuple[str | None, str | None]:
     """Helper to get LLM completion response"""
     final_text = task + "\n" + prompt
     try:
+        # Claude Max uses native Anthropic API with OAuth token
+        if provider.lower() == "claude-max":
+            if anthropic_sdk is None:
+                return None, "anthropic package not installed"
+            token = _read_claude_max_token(api_key if api_key != "auto" else None)
+            if not token:
+                return None, "Could not read Claude Max OAuth token"
+            client = anthropic_sdk.Anthropic(api_key=token)
+            message = client.messages.create(
+                model=model,
+                max_tokens=4096,
+                messages=[{"role": "user", "content": final_text}],
+            )
+            text = message.content[0].text
+            return text, None
+
         # For Gemini, prepend provider name to model
         if provider.lower() == "gemini":
             model = f"gemini/{model}"
