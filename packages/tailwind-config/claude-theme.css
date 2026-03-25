@@ -1,0 +1,60 @@
+/*
+ * ClaudePlane Theme Override
+ * 
+ * Applies Claude/Anthropic brand colors to the Plane UI.
+ * Claude's primary color is a warm terracotta/coral (#D97757 / oklch equivalent),
+ * with a cream background palette inspired by claude.ai.
+ *
+ * Usage: Import this file AFTER variables.css to override brand colors.
+ * The theme activates when [data-theme="claude"] or [data-theme="claude-dark"]
+ * is set on the root element.
+ */
+
+@layer base {
+  /* Claude Light Theme */
+  [data-theme="claude"],
+  [data-theme="claude"] * {
+    /* Claude brand palette - warm terracotta/coral tones */
+    --brand-100: oklch(0.975 0.012 50);
+    --brand-200: oklch(0.950 0.025 48);
+    --brand-300: oklch(0.920 0.045 46);
+    --brand-400: oklch(0.875 0.075 44);
+    --brand-500: oklch(0.820 0.110 42);
+    --brand-600: oklch(0.755 0.140 40);
+    --brand-700: oklch(0.685 0.155 38);
+    --brand-900: oklch(0.520 0.120 36);
+    --brand-1000: oklch(0.420 0.095 34);
+    --brand-1100: oklch(0.340 0.070 32);
+    --brand-1200: oklch(0.270 0.050 30);
+    --brand-default: oklch(0.600 0.135 39);
+
+    /* Warm cream background surfaces (inspired by claude.ai) */
+    --neutral-white: oklch(0.993 0.003 80);
+    --neutral-100: oklch(0.980 0.005 75);
+    --neutral-200: oklch(0.965 0.008 70);
+    --neutral-300: oklch(0.945 0.010 65);
+  }
+
+  /* Claude Dark Theme */
+  [data-theme="claude-dark"],
+  [data-theme="claude-dark"] * {
+    /* Claude dark mode brand palette */
+    --brand-100: oklch(0.280 0.040 38);
+    --brand-200: oklch(0.320 0.055 38);
+    --brand-300: oklch(0.380 0.070 38);
+    --brand-400: oklch(0.450 0.090 39);
+    --brand-500: oklch(0.540 0.115 40);
+    --brand-600: oklch(0.630 0.135 40);
+    --brand-700: oklch(0.710 0.145 41);
+    --brand-900: oklch(0.450 0.095 38);
+    --brand-1000: oklch(0.550 0.120 40);
+    --brand-1100: oklch(0.680 0.140 41);
+    --brand-1200: oklch(0.780 0.120 42);
+    --brand-default: oklch(0.650 0.140 40);
+
+    /* Dark warm surfaces */
+    --neutral-100: oklch(0.220 0.008 60);
+    --neutral-200: oklch(0.250 0.010 58);
+    --neutral-300: oklch(0.280 0.012 56);
+  }
+}
