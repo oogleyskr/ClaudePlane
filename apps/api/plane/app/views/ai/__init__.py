@@ -11,3 +11,4 @@ from .release_notes import ReleaseNotesEndpoint
 from .retrospective import RetrospectiveEndpoint
 from .digest import DailyDigestEndpoint
 from .commit_linker import CommitIssueLinkerEndpoint
+from .usage_stats import LLMUsageStatsEndpoint

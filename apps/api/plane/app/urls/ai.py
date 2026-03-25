@@ -21,6 +21,7 @@ from plane.app.views.ai import (
     RetrospectiveEndpoint,
     DailyDigestEndpoint,
     CommitIssueLinkerEndpoint,
+    LLMUsageStatsEndpoint,
 )
 
 
@@ -77,5 +78,11 @@ urlpatterns = [
         "workspaces/<str:slug>/projects/<uuid:project_id>/ai/retrospective/<uuid:cycle_id>/",
         RetrospectiveEndpoint.as_view(),
         name="ai-retrospective",
+    ),
+    # Workspace-level AI admin
+    path(
+        "workspaces/<str:slug>/ai/usage-stats/",
+        LLMUsageStatsEndpoint.as_view(),
+        name="ai-usage-stats",
     ),
 ]
