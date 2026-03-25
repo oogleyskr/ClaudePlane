@@ -1,0 +1,71 @@
+{
+  "name": "ClaudePlane: Weekly Cycle Digest Email",
+  "description": "Every Monday morning, generate an AI-powered project digest and email it to the team.",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1"
+            }
+          ]
+        }
+      },
+      "name": "Monday 9am Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.PLANE_URL }}/api/workspaces/{{ $env.PLANE_WORKSPACE }}/projects/{{ $env.PLANE_PROJECT }}/ai/digest/",
+        "method": "POST",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Cookie", "value": "={{ $env.PLANE_SESSION_COOKIE }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "days", "value": "7" }
+          ]
+        }
+      },
+      "name": "Generate Weekly Digest",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.FROM_EMAIL }}",
+        "toEmail": "={{ $env.TEAM_EMAIL }}",
+        "subject": "Weekly Project Digest - {{ new Date().toISOString().split('T')[0] }}",
+        "html": "<h2>Weekly Project Digest</h2><p>{{ $json.digest.summary }}</p><h3>Highlights</h3><ul>{{ $json.digest.highlights?.map(h => '<li>' + h + '</li>').join('') }}</ul><h3>Momentum: {{ $json.digest.momentum }}</h3><h3>Suggested Focus</h3><p>{{ $json.digest.suggested_focus }}</p>"
+      },
+      "name": "Send Digest Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Monday 9am Trigger": {
+      "main": [
+        [{ "node": "Generate Weekly Digest", "type": "main", "index": 0 }]
+      ]
+    },
+    "Generate Weekly Digest": {
+      "main": [
+        [{ "node": "Send Digest Email", "type": "main", "index": 0 }]
+      ]
+    }
+  }
+}

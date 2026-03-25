@@ -1,0 +1,102 @@
+{
+  "name": "ClaudePlane: Auto-Triage New Issues with AI",
+  "description": "When a new issue is created, automatically call the ClaudePlane AI triage endpoint to suggest priority, labels, and assignee, then update the issue.",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "plane-auto-triage",
+        "responseMode": "onReceived"
+      },
+      "name": "Plane Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.event }}",
+              "operation": "equals",
+              "value2": "issue"
+            },
+            {
+              "value1": "={{ $json.action }}",
+              "operation": "equals",
+              "value2": "create"
+            }
+          ]
+        }
+      },
+      "name": "Filter: New Issues Only",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.PLANE_URL }}/api/workspaces/{{ $json.data.workspace_detail.slug }}/projects/{{ $json.data.project_detail.id }}/ai/triage/{{ $json.data.id }}/",
+        "method": "POST",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Cookie", "value": "={{ $env.PLANE_SESSION_COOKIE }}" }
+          ]
+        }
+      },
+      "name": "Call AI Triage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.PLANE_URL }}/api/workspaces/{{ $node['Plane Webhook'].json.data.workspace_detail.slug }}/projects/{{ $node['Plane Webhook'].json.data.project_detail.id }}/issues/{{ $node['Plane Webhook'].json.data.id }}/",
+        "method": "PATCH",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Cookie", "value": "={{ $env.PLANE_SESSION_COOKIE }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "priority",
+              "value": "={{ $json.suggestions.priority }}"
+            }
+          ]
+        }
+      },
+      "name": "Update Issue Priority",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Plane Webhook": {
+      "main": [
+        [{ "node": "Filter: New Issues Only", "type": "main", "index": 0 }]
+      ]
+    },
+    "Filter: New Issues Only": {
+      "main": [
+        [{ "node": "Call AI Triage", "type": "main", "index": 0 }]
+      ]
+    },
+    "Call AI Triage": {
+      "main": [
+        [{ "node": "Update Issue Priority", "type": "main", "index": 0 }]
+      ]
+    }
+  }
+}

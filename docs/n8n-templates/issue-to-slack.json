@@ -1,0 +1,81 @@
+{
+  "name": "ClaudePlane: Issue Created → Slack Notification",
+  "description": "When a new issue is created in ClaudePlane, send a formatted notification to a Slack channel with issue details, priority, and assignee.",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "plane-issue-webhook",
+        "responseMode": "onReceived",
+        "responseData": "allEntries"
+      },
+      "name": "Plane Webhook Receiver",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.event }}",
+              "operation": "equals",
+              "value2": "issue"
+            },
+            {
+              "value1": "={{ $json.action }}",
+              "operation": "equals",
+              "value2": "create"
+            }
+          ]
+        }
+      },
+      "name": "Filter: Issue Created",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#plane-issues",
+        "text": "",
+        "attachments": [
+          {
+            "color": "={{ $json.data.priority === 'urgent' ? '#FF0000' : $json.data.priority === 'high' ? '#FF8C00' : $json.data.priority === 'medium' ? '#FFD700' : '#3CB371' }}",
+            "title": "={{ $json.data.name }}",
+            "text": "={{ $json.data.description_stripped || 'No description' }}",
+            "fields": [
+              {
+                "title": "Priority",
+                "value": "={{ $json.data.priority }}",
+                "short": true
+              },
+              {
+                "title": "Project",
+                "value": "={{ $json.data.project_detail?.name || 'Unknown' }}",
+                "short": true
+              }
+            ]
+          }
+        ]
+      },
+      "name": "Slack: Send Notification",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [650, 250]
+    }
+  ],
+  "connections": {
+    "Plane Webhook Receiver": {
+      "main": [
+        [{ "node": "Filter: Issue Created", "type": "main", "index": 0 }]
+      ]
+    },
+    "Filter: Issue Created": {
+      "main": [
+        [{ "node": "Slack: Send Notification", "type": "main", "index": 0 }]
+      ]
+    }
+  }
+}
