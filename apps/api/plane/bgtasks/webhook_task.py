@@ -253,7 +253,8 @@ def send_webhook_deactivation_email(webhook_id: str, receiver_id: str, current_s
 @shared_task(
     bind=True,
     autoretry_for=(requests.RequestException,),
-    retry_backoff=600,
+    retry_backoff=True,
+    retry_backoff_max=600,
     max_retries=5,
     retry_jitter=True,
 )
