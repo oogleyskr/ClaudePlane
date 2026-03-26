@@ -7,8 +7,6 @@
  * and recent usage statistics at a glance.
  */
 
-"use client";
-
 import React, { useEffect, useState } from "react";
 
 interface HealthCheckResponse {

@@ -7,8 +7,6 @@
  * and estimate actions directly in the issue context.
  */
 
-"use client";
-
 import React, { useState, useCallback } from "react";
 
 // Types for the component props
