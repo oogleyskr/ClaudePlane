@@ -1,5 +1,5 @@
 {
-  "name": "ClaudePlane: Weekly Cycle Digest Email",
+  "name": "Glider: Weekly Cycle Digest Email",
   "description": "Every Monday morning, generate an AI-powered project digest and email it to the team.",
   "nodes": [
     {

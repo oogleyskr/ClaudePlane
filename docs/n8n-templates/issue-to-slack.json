@@ -1,6 +1,6 @@
 {
-  "name": "ClaudePlane: Issue Created → Slack Notification",
-  "description": "When a new issue is created in ClaudePlane, send a formatted notification to a Slack channel with issue details, priority, and assignee.",
+  "name": "Glider: Issue Created → Slack Notification",
+  "description": "When a new issue is created in Glider, send a formatted notification to a Slack channel with issue details, priority, and assignee.",
   "nodes": [
     {
       "parameters": {

@@ -4,7 +4,7 @@
  *
  * React hooks for AI action endpoints.
  * Provides reusable hooks with loading states, error handling,
- * and caching for all ClaudePlane AI features.
+ * and caching for all Glider AI features.
  */
 
 "use client";

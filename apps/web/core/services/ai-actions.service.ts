@@ -2,7 +2,7 @@
  * Copyright (c) 2024-present Glider contributors
  * SPDX-License-Identifier: AGPL-3.0-only
  *
- * Service layer for ClaudePlane AI action endpoints.
+ * Service layer for Glider AI action endpoints.
  * Provides typed methods for all AI-native features:
  * triage, decompose, sprint planning, duplicate detection, etc.
  */

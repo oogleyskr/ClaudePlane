@@ -1,6 +1,6 @@
 {
-  "name": "ClaudePlane: Auto-Triage New Issues with AI",
-  "description": "When a new issue is created, automatically call the ClaudePlane AI triage endpoint to suggest priority, labels, and assignee, then update the issue.",
+  "name": "Glider: Auto-Triage New Issues with AI",
+  "description": "When a new issue is created, automatically call the Glider AI triage endpoint to suggest priority, labels, and assignee, then update the issue.",
   "nodes": [
     {
       "parameters": {
