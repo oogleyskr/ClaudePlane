@@ -13,6 +13,8 @@ import { PageWrapper } from "@/components/common/page-wrapper";
 import { useInstance } from "@/hooks/store";
 // types
 import type { Route } from "./+types/page";
+// components
+import { AIProviderStatus } from "@/components/ai-provider-status";
 // local
 import { InstanceAIForm } from "./form";
 
@@ -25,12 +27,17 @@ const InstanceAIPage = observer(function InstanceAIPage(_props: Route.ComponentP
   return (
     <PageWrapper
       header={{
-        title: "AI features for all your workspaces",
-        description: "Configure your AI API credentials so Plane AI features are turned on for all your workspaces.",
+        title: "ClaudePlane AI Configuration",
+        description: "Configure your AI API credentials so ClaudePlane AI features are turned on for all your workspaces.",
       }}
     >
       {formattedConfig ? (
-        <InstanceAIForm config={formattedConfig} />
+        <>
+          <div className="mb-6">
+            <AIProviderStatus />
+          </div>
+          <InstanceAIForm config={formattedConfig} />
+        </>
       ) : (
         <Loader className="space-y-8">
           <Loader.Item height="50px" width="40%" />
@@ -45,6 +52,6 @@ const InstanceAIPage = observer(function InstanceAIPage(_props: Route.ComponentP
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "Artificial Intelligence Settings - God Mode" }];
+export const meta: Route.MetaFunction = () => [{ title: "ClaudePlane AI Configuration - God Mode" }];
 
 export default InstanceAIPage;
