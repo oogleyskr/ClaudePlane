@@ -52,6 +52,6 @@ const InstanceAIPage = observer(function InstanceAIPage(_props: Route.ComponentP
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "ClaudePlane AI Configuration - God Mode" }];
+export const meta: Route.MetaFunction = () => [{ title: "ClaudePlane AI Configuration - ClaudePlane Admin" }];
 
 export default InstanceAIPage;

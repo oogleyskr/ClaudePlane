@@ -25,6 +25,6 @@ const WorkspaceCreatePage = observer(function WorkspaceCreatePage(_props: Route.
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "Create Workspace - God Mode" }];
+export const meta: Route.MetaFunction = () => [{ title: "Create Workspace - ClaudePlane Admin" }];
 
 export default WorkspaceCreatePage;
