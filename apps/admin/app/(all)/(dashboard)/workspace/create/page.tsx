@@ -25,6 +25,6 @@ const WorkspaceCreatePage = observer(function WorkspaceCreatePage(_props: Route.
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "Create Workspace - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "Create Workspace - Glider Admin" }];
 
 export default WorkspaceCreatePage;

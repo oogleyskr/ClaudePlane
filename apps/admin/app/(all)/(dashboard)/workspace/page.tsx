@@ -167,6 +167,6 @@ const WorkspaceManagementPage = observer(function WorkspaceManagementPage(_props
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "Workspace Management - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "Workspace Management - Glider Admin" }];
 
 export default WorkspaceManagementPage;

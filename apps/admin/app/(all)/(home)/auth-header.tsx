@@ -12,7 +12,7 @@ export function AuthHeader() {
     <div className="sticky top-0 flex w-full flex-shrink-0 items-center justify-between gap-6">
       <Link href="/" className="flex items-center gap-2">
         <PlaneLockup height={20} width={95} className="text-primary" />
-        <span className="text-sm font-semibold text-primary tracking-tight">ClaudePlane</span>
+        <span className="text-sm font-semibold text-primary tracking-tight">Glider</span>
       </Link>
       <span className="text-xs text-secondary">AI-Native Project Management</span>
     </div>

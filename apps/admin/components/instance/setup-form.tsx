@@ -142,8 +142,8 @@ export function InstanceSetupForm() {
       <div className="mt-10 flex w-full flex-grow flex-col items-center justify-center py-6">
         <div className="relative flex w-full max-w-[22.5rem] flex-col gap-6">
           <FormHeader
-            heading="Setup your ClaudePlane Instance"
-            subHeading="Post setup you will be able to manage this ClaudePlane instance."
+            heading="Setup your Glider Instance"
+            subHeading="Post setup you will be able to manage this Glider instance."
           />
           {errorData.type &&
             errorData?.message &&
@@ -352,10 +352,10 @@ export function InstanceSetupForm() {
                 />
               </div>
               <label className="cursor-pointer text-13 font-medium text-tertiary" htmlFor="is_telemetry_enabled">
-                Allow ClaudePlane to anonymously collect usage events.{" "}
+                Allow Glider to anonymously collect usage events.{" "}
                 <a
                   tabIndex={-1}
-                  href="https://developers.plane.so/self-hosting/telemetry"
+                  href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 hover:text-blue-600 flex-shrink-0 text-13 font-medium"

@@ -100,6 +100,6 @@ const InstanceGiteaAuthenticationPage = observer(function InstanceGiteaAuthentic
     </PageWrapper>
   );
 });
-export const meta: Route.MetaFunction = () => [{ title: "Gitea Authentication - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "Gitea Authentication - Glider Admin" }];
 
 export default InstanceGiteaAuthenticationPage;

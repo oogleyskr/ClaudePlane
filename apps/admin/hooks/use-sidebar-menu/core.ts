@@ -39,7 +39,7 @@ export const coreSidebarMenuLinks: Record<TCoreSidebarMenuKey, TSidebarMenuItem>
   },
   ai: {
     Icon: BrainCog,
-    name: "ClaudePlane AI",
+    name: "Glider AI",
     description: "Configure your AI provider settings.",
     href: `/ai/`,
   },

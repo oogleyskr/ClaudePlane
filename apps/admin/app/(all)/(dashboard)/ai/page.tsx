@@ -27,8 +27,8 @@ const InstanceAIPage = observer(function InstanceAIPage(_props: Route.ComponentP
   return (
     <PageWrapper
       header={{
-        title: "ClaudePlane AI Configuration",
-        description: "Configure your AI API credentials so ClaudePlane AI features are turned on for all your workspaces.",
+        title: "Glider AI Configuration",
+        description: "Configure your AI API credentials so Glider AI features are turned on for all your workspaces.",
       }}
     >
       {formattedConfig ? (
@@ -52,6 +52,6 @@ const InstanceAIPage = observer(function InstanceAIPage(_props: Route.ComponentP
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "ClaudePlane AI Configuration - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "Glider AI Configuration - Glider Admin" }];
 
 export default InstanceAIPage;

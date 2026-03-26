@@ -116,6 +116,6 @@ const InstanceGithubAuthenticationPage = observer(function InstanceGithubAuthent
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "GitHub Authentication - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "GitHub Authentication - Glider Admin" }];
 
 export default InstanceGithubAuthenticationPage;

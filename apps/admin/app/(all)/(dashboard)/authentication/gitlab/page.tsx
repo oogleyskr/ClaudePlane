@@ -104,6 +104,6 @@ const InstanceGitlabAuthenticationPage = observer(function InstanceGitlabAuthent
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "GitLab Authentication - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "GitLab Authentication - Glider Admin" }];
 
 export default InstanceGitlabAuthenticationPage;

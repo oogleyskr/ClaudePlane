@@ -30,6 +30,6 @@ function GeneralPage() {
   );
 }
 
-export const meta: Route.MetaFunction = () => [{ title: "General Settings - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "General Settings - Glider Admin" }];
 
 export default observer(GeneralPage);

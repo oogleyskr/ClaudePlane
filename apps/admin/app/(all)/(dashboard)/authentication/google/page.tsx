@@ -105,6 +105,6 @@ const InstanceGoogleAuthenticationPage = observer(function InstanceGoogleAuthent
   );
 });
 
-export const meta: Route.MetaFunction = () => [{ title: "Google Authentication - ClaudePlane Admin" }];
+export const meta: Route.MetaFunction = () => [{ title: "Google Authentication - Glider Admin" }];
 
 export default InstanceGoogleAuthenticationPage;
