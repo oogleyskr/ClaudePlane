@@ -10,8 +10,31 @@
  * is set on the root element.
  */
 
+/* ---- Claude Brand CSS Custom Properties (available globally) ---- */
+:root {
+  /* Claude Brand Palette */
+  --claude-primary: #D97757;
+  --claude-primary-dark: #B85C3A;
+  --claude-primary-light: #F0C4AA;
+  --claude-bg-light: #FFFAF5;
+  --claude-bg-dark: #1A1714;
+  --claude-accent: #6B5CE7;
+  --claude-accent-light: #8B7FF0;
+  --claude-accent-dark: #5445C0;
+  --claude-success: #4CAF50;
+  --claude-text-primary: #2D2A26;
+  --claude-text-secondary: #6B6560;
+
+  /* AI Feature Accent */
+  --claude-ai-gradient: linear-gradient(135deg, #6B5CE7 0%, #8B7FF0 50%, #D97757 100%);
+  --claude-ai-border: rgba(107, 92, 231, 0.3);
+  --claude-ai-glow: 0 0 12px rgba(107, 92, 231, 0.15);
+}
+
 @layer base {
-  /* Claude Light Theme */
+  /* ================================================================
+   * Claude Light Theme
+   * ================================================================ */
   [data-theme="claude"],
   [data-theme="claude"] * {
     /* Claude brand palette - warm terracotta/coral tones */
@@ -35,7 +58,9 @@
     --neutral-300: oklch(0.945 0.010 65);
   }
 
-  /* Claude Dark Theme */
+  /* ================================================================
+   * Claude Dark Theme
+   * ================================================================ */
   [data-theme="claude-dark"],
   [data-theme="claude-dark"] * {
     /* Claude dark mode brand palette */
@@ -57,4 +82,129 @@
     --neutral-200: oklch(0.250 0.010 58);
     --neutral-300: oklch(0.280 0.012 56);
   }
+
+  /* ================================================================
+   * Global Overrides — apply to ALL themes (light and dark)
+   * These make the default Plane UI feel Claude-branded without
+   * requiring the explicit claude/claude-dark data-theme attribute.
+   * ================================================================ */
+
+  /* --- Primary buttons: Claude terracotta --- */
+  :root {
+    --color-accent-primary: #D97757;
+  }
+
+  /* --- Focus rings: warm terracotta --- */
+  *:focus-visible {
+    outline-color: #D97757 !important;
+  }
+
+  /* --- Selection color: warm light --- */
+  ::selection {
+    background-color: rgba(217, 119, 87, 0.2);
+  }
+
+  /* --- Smooth transitions on interactive elements --- */
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  }
+}
+
+/* ================================================================
+ * AI Feature Styling — used by AI action buttons, GPT popover, etc.
+ * ================================================================ */
+
+/* AI section container in sidebars */
+.claude-ai-section {
+  position: relative;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, rgba(107, 92, 231, 0.04) 0%, rgba(217, 119, 87, 0.04) 100%);
+  border: 1px solid rgba(107, 92, 231, 0.12);
+}
+
+.claude-ai-section::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  right: 1rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(107, 92, 231, 0.25), rgba(217, 119, 87, 0.25), transparent);
+}
+
+/* AI action buttons — purple accent */
+.claude-ai-btn {
+  background: linear-gradient(135deg, rgba(107, 92, 231, 0.08) 0%, rgba(107, 92, 231, 0.04) 100%);
+  border: 1px solid rgba(107, 92, 231, 0.2);
+  color: #6B5CE7;
+  transition: all 0.2s ease;
+}
+
+.claude-ai-btn:hover {
+  background: linear-gradient(135deg, rgba(107, 92, 231, 0.15) 0%, rgba(107, 92, 231, 0.08) 100%);
+  border-color: rgba(107, 92, 231, 0.35);
+  box-shadow: 0 0 12px rgba(107, 92, 231, 0.1);
+}
+
+.claude-ai-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* AI sparkle effect (CSS-only) */
+.claude-ai-sparkle::before {
+  content: "\2728";
+  margin-right: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* AI popover accent border */
+.claude-ai-popover {
+  border-color: rgba(107, 92, 231, 0.25) !important;
+  box-shadow: 0 4px 24px rgba(107, 92, 231, 0.08), 0 0 0 1px rgba(107, 92, 231, 0.05) !important;
+}
+
+/* AI label badge */
+.claude-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6B5CE7;
+  background: rgba(107, 92, 231, 0.08);
+  border-radius: 9999px;
+}
+
+/* Dark mode adjustments for AI elements */
+[data-theme*="dark"] .claude-ai-section {
+  background: linear-gradient(135deg, rgba(107, 92, 231, 0.08) 0%, rgba(217, 119, 87, 0.06) 100%);
+  border-color: rgba(107, 92, 231, 0.2);
+}
+
+[data-theme*="dark"] .claude-ai-btn {
+  background: linear-gradient(135deg, rgba(107, 92, 231, 0.12) 0%, rgba(107, 92, 231, 0.06) 100%);
+  border-color: rgba(107, 92, 231, 0.25);
+  color: #8B7FF0;
+}
+
+[data-theme*="dark"] .claude-ai-btn:hover {
+  background: linear-gradient(135deg, rgba(107, 92, 231, 0.22) 0%, rgba(107, 92, 231, 0.12) 100%);
+  border-color: rgba(107, 92, 231, 0.4);
+  box-shadow: 0 0 16px rgba(107, 92, 231, 0.15);
+}
+
+[data-theme*="dark"] .claude-ai-badge {
+  color: #8B7FF0;
+  background: rgba(107, 92, 231, 0.15);
 }
