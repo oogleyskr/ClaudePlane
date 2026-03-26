@@ -1,7 +1,9 @@
 /**
  * Copyright (c) 2023-present Plane Software, Inc. and contributors
+ * Copyright (c) 2024-present ClaudePlane contributors
  * SPDX-License-Identifier: AGPL-3.0-only
- * See the LICENSE file for details.
+ *
+ * Modified: Replaced Plane logo with ClaudePlane text branding.
  */
 
 import React from "react";
@@ -9,7 +11,6 @@ import { observer } from "mobx-react";
 import Link from "next/link";
 import { AUTH_TRACKER_ELEMENTS } from "@plane/constants";
 import { useTranslation } from "@plane/i18n";
-import { PlaneLockup } from "@plane/propel/icons";
 import { PageHead } from "@/components/core/page-title";
 import { EAuthModes } from "@/helpers/authentication.helper";
 import { useInstance } from "@/hooks/store/use-instance";
@@ -35,9 +36,7 @@ type AuthHeaderProps = {
 
 export const AuthHeader = observer(function AuthHeader({ type }: AuthHeaderProps) {
   const { t } = useTranslation();
-  // store
   const { config } = useInstance();
-  // derived values
   const enableSignUpConfig = config?.enable_signup ?? false;
 
   return (
@@ -70,10 +69,15 @@ export function AuthHeaderBase(props: TAuthHeaderBase) {
   const { pageTitle, additionalAction } = props;
   return (
     <>
-      <PageHead title={pageTitle + " - Plane"} />
+      <PageHead title={pageTitle + " - ClaudePlane"} />
       <div className="sticky top-0 flex w-full flex-shrink-0 items-center justify-between gap-6">
-        <Link href="/">
-          <PlaneLockup height={20} width={95} className="text-primary" />
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-xl font-bold tracking-tight" style={{ color: "#D97757" }}>
+            Claude
+          </span>
+          <span className="text-xl font-bold tracking-tight text-primary">
+            Plane
+          </span>
         </Link>
         {additionalAction}
       </div>
