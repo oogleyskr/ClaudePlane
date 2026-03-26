@@ -22,8 +22,8 @@ export type TTaskPayload = {
   text_input: string;
 };
 
-// Original Plane AI service. See ai-actions.service.ts for ClaudePlane extensions.
-export class ClaudePlaneAIService extends APIService {
+// Original Plane AI service. See ai-actions.service.ts for Glider extensions.
+export class GliderAIService extends APIService {
   constructor() {
     super(API_BASE_URL);
   }
@@ -51,4 +51,4 @@ export class ClaudePlaneAIService extends APIService {
 }
 
 // Backward compatibility alias
-export { ClaudePlaneAIService as AIService };
+export { GliderAIService as AIService };

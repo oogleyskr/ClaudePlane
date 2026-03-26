@@ -282,7 +282,7 @@ export function GptAssistantPopover(props: Props) {
               <>
                 <div className="flex items-start justify-center gap-2 text-13 text-accent-primary">
                   <AlertCircle className="h-4 w-4" />
-                  <p>Powered by ClaudePlane AI</p>
+                  <p>Powered by Glider AI</p>
                 </div>
               </>
             )}

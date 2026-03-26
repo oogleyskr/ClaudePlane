@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2024-present ClaudePlane contributors
+ * Copyright (c) 2024-present Glider contributors
  * SPDX-License-Identifier: AGPL-3.0-only
  *
  * AI Action Buttons component for the issue detail view.
