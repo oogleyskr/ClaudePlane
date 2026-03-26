@@ -71,7 +71,7 @@ export function AuthHeaderBase(props: TAuthHeaderBase) {
     <>
       <PageHead title={pageTitle + " - ClaudePlane"} />
       <div className="sticky top-0 flex w-full flex-shrink-0 items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center">
           <span className="text-xl font-bold tracking-tight" style={{ color: "#D97757" }}>
             Claude
           </span>
