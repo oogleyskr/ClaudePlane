@@ -27,30 +27,30 @@ type TAuthHeader = {
 const Titles = {
   [EAuthModes.SIGN_IN]: {
     [EAuthSteps.EMAIL]: {
-      header: "AI-Native Project Management.",
-      subHeader: "Welcome back to ClaudePlane.",
+      header: "Project Management.",
+      subHeader: "Welcome back to Glider.",
     },
     [EAuthSteps.PASSWORD]: {
-      header: "AI-Native Project Management.",
-      subHeader: "Welcome back to ClaudePlane.",
+      header: "Project Management.",
+      subHeader: "Welcome back to Glider.",
     },
     [EAuthSteps.UNIQUE_CODE]: {
-      header: "AI-Native Project Management.",
-      subHeader: "Welcome back to ClaudePlane.",
+      header: "Project Management.",
+      subHeader: "Welcome back to Glider.",
     },
   },
   [EAuthModes.SIGN_UP]: {
     [EAuthSteps.EMAIL]: {
-      header: "AI-Native Project Management.",
-      subHeader: "Create your ClaudePlane account.",
+      header: "Project Management.",
+      subHeader: "Create your Glider account.",
     },
     [EAuthSteps.PASSWORD]: {
-      header: "AI-Native Project Management.",
-      subHeader: "Create your ClaudePlane account.",
+      header: "Project Management.",
+      subHeader: "Create your Glider account.",
     },
     [EAuthSteps.UNIQUE_CODE]: {
-      header: "AI-Native Project Management.",
-      subHeader: "Create your ClaudePlane account.",
+      header: "Project Management.",
+      subHeader: "Create your Glider account.",
     },
   },
 };

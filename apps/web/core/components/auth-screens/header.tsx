@@ -1,9 +1,9 @@
 /**
  * Copyright (c) 2023-present Plane Software, Inc. and contributors
- * Copyright (c) 2024-present ClaudePlane contributors
+ * Copyright (c) 2024-present Glider contributors
  * SPDX-License-Identifier: AGPL-3.0-only
  *
- * Modified: Replaced Plane logo with ClaudePlane text branding.
+ * Modified: Replaced Plane logo with Glider text branding.
  */
 
 import React from "react";
@@ -69,14 +69,11 @@ export function AuthHeaderBase(props: TAuthHeaderBase) {
   const { pageTitle, additionalAction } = props;
   return (
     <>
-      <PageHead title={pageTitle + " - ClaudePlane"} />
+      <PageHead title={pageTitle + " - Glider"} />
       <div className="sticky top-0 flex w-full flex-shrink-0 items-center justify-between gap-6">
         <Link href="/" className="flex items-center">
-          <span className="text-xl font-bold tracking-tight" style={{ color: "#D97757" }}>
-            Claude
-          </span>
           <span className="text-xl font-bold tracking-tight text-primary">
-            Plane
+            Glider
           </span>
         </Link>
         {additionalAction}
