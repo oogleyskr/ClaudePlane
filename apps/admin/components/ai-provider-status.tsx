@@ -72,11 +72,14 @@ export const AIProviderStatus: React.FC = () => {
   const { color, label } = statusConfig[status];
 
   return (
-    <div className="rounded-lg border border-custom-border-200 bg-custom-background-100 p-4">
+    <div className="rounded-lg border border-custom-border-200 bg-custom-background-100 p-4" style={{ borderColor: "rgba(107, 92, 231, 0.2)", background: "linear-gradient(135deg, rgba(107, 92, 231, 0.03) 0%, rgba(217, 119, 87, 0.03) 100%)" }}>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-medium text-custom-text-100">
-          AI Provider Status
-        </h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-sm font-medium text-custom-text-100">
+            AI Provider Status
+          </h3>
+          <span className="claude-ai-badge claude-ai-sparkle">AI</span>
+        </div>
         <div className="flex items-center gap-2">
           <span className={`w-2.5 h-2.5 rounded-full ${color} animate-pulse`} />
           <span className="text-xs text-custom-text-300">{label}</span>

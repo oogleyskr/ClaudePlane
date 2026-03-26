@@ -276,11 +276,13 @@ export const IssueDetailsSidebar = observer(function IssueDetailsSidebar(props: 
             />
 
             {isEditable && (
-              <AIActionButtons
-                workspaceSlug={workspaceSlug}
-                projectId={projectId}
-                issueId={issueId}
-              />
+              <div className="mt-3 pt-1">
+                <AIActionButtons
+                  workspaceSlug={workspaceSlug}
+                  projectId={projectId}
+                  issueId={issueId}
+                />
+              </div>
             )}
           </div>
         </div>

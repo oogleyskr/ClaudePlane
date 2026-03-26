@@ -123,43 +123,44 @@ export const AIActionButtons: React.FC<AIActionButtonsProps> = ({
   ];
 
   return (
-    <div className="flex flex-col gap-2">
-      {/* Button Row */}
-      <div className="flex items-center gap-2">
+    <div className="claude-ai-section flex flex-col gap-2">
+      {/* Header with AI badge */}
+      <div className="flex items-center gap-2 mb-1">
+        <span className="claude-ai-badge claude-ai-sparkle">AI</span>
         <span className="text-xs font-medium text-custom-text-300 uppercase tracking-wider">
           Ask Claude
         </span>
-        <div className="flex items-center gap-1.5">
-          {buttons.map((btn) => (
-            <button
-              key={btn.key}
-              onClick={() => handleAction(btn.key)}
-              disabled={loading !== null}
-              className={`
-                inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium
-                transition-all duration-150
-                ${loading === btn.key
-                  ? "bg-custom-primary-100/20 text-custom-primary-100 cursor-wait"
-                  : "bg-custom-background-90 text-custom-text-200 hover:bg-custom-primary-100/10 hover:text-custom-primary-100"
-                }
-                ${loading !== null && loading !== btn.key ? "opacity-50 cursor-not-allowed" : ""}
-                border border-custom-border-200 hover:border-custom-primary-100/30
-              `}
-              title={btn.description}
-            >
-              {loading === btn.key ? (
-                <svg className="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-              ) : (
-                btn.icon
-              )}
-              {btn.label}
-            </button>
-          ))}
-        </div>
+      </div>
+
+      {/* Button Row */}
+      <div className="flex items-center gap-1.5">
+        {buttons.map((btn) => (
+          <button
+            key={btn.key}
+            onClick={() => handleAction(btn.key)}
+            disabled={loading !== null}
+            className={`
+              claude-ai-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium
+              ${loading === btn.key
+                ? "!opacity-75 cursor-wait"
+                : ""
+              }
+              ${loading !== null && loading !== btn.key ? "!opacity-40 cursor-not-allowed" : ""}
+            `}
+            title={btn.description}
+          >
+            {loading === btn.key ? (
+              <svg className="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              </svg>
+            ) : (
+              btn.icon
+            )}
+            {btn.label}
+          </button>
+        ))}
       </div>
 
       {/* Error Display */}
