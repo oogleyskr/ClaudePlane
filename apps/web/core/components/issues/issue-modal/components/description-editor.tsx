@@ -283,7 +283,7 @@ export const IssueDescriptionEditor = observer(function IssueDescriptionEditor(p
                     tabIndex={-1}
                   >
                     <Sparkle className="h-4 w-4" />
-                    AI
+                    Claude
                   </button>
                 }
                 workspaceId={workspaceId}

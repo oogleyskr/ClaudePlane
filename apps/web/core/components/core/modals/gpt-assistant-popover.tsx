@@ -268,7 +268,7 @@ export function GptAssistantPopover(props: Props) {
                 onChange={onChange}
                 ref={ref}
                 placeholder={`${
-                  prompt && prompt !== "" ? "Tell AI what action to perform on this content..." : "Ask AI anything..."
+                  prompt && prompt !== "" ? "Tell Claude what to do with this content..." : "Ask Claude anything..."
                 }`}
                 className="w-full"
                 autoFocus
@@ -282,7 +282,7 @@ export function GptAssistantPopover(props: Props) {
               <>
                 <div className="flex items-start justify-center gap-2 text-13 text-accent-primary">
                   <AlertCircle className="h-4 w-4" />
-                  <p>By using this feature, you consent to sharing the message with a 3rd party service. </p>
+                  <p>Powered by ClaudePlane AI</p>
                 </div>
               </>
             )}
