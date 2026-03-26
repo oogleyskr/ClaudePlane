@@ -52,7 +52,7 @@ export const BillingRoot = observer(function BillingRoot() {
         />
         <div className="mt-6">
           <SettingsBoxedControlItem
-            title="Community"
+            title="Glider"
             description="Unlimited projects, issues, cycles, modules, pages, and storage"
           />
         </div>

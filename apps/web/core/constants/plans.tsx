@@ -1133,7 +1133,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
     selfHostedOnly: true,
     features: [
       {
-        title: "God Mode",
+        title: "Glider Admin",
         description: "Manage your self-hosted Plane instance better with\nan instance admin interface.",
         cloud: {
           free: true,
@@ -1236,7 +1236,7 @@ export const PLANS_COMPARISON_LIST: TPlansComparisonDetails[] = [
         description: (
           <>
             Get business-friendly SLAs with higher plans. SLAs are by priority of work item and tiers{" "}
-            <a href="https://plane.so/talk-to-sales" target="_blank" rel="noopener noreferrer" className="underline">
+            <a href="#" target="_blank" rel="noopener noreferrer" className="underline">
               can be requested
             </a>
             .
@@ -1288,7 +1288,7 @@ export const PLANE_PLANS: PlanePlans = {
       name: "Business",
       monthlyPriceSecondaryDescription: "billed monthly",
       yearlyPriceSecondaryDescription: "billed yearly",
-      buttonCTA: "Talk to Sales",
+      buttonCTA: "Contact Us",
       isActive: false,
     },
     enterprise: {
@@ -1296,7 +1296,7 @@ export const PLANE_PLANS: PlanePlans = {
       name: "Enterprise",
       monthlyPriceSecondaryDescription: "billed monthly",
       yearlyPriceSecondaryDescription: "billed yearly",
-      buttonCTA: "Talk to Sales",
+      buttonCTA: "Contact Us",
       isActive: false,
     },
   },
